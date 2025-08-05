@@ -27,10 +27,10 @@ resource "azurerm_storage_container" "example" {
 
 resource "null_resource" "upload_archive" {
   provisioner "local-exec" {
-    command = "az storage blob upload --account-name ${azurerm_storage_account.example.name} --container-name ${azurerm_storage_container.example.name} --name terraform.zip --file ./terraform.zip --auth-mode login"
+    command = "az storage blob upload --account-name ${azurerm_storage_account.example.name} --container-name ${azurerm_storage_container.example.name} --name ${var.blob_name} --file ./${var.blob_name} --auth-mode login"
   }
 
   triggers = {
-    archive_md5 = filemd5("./terraform.zip")
+    archive_md5 = filemd5("./${var.blob_name}")
   }
 }

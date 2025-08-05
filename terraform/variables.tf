@@ -17,4 +17,5 @@ variable "container_name" {
 
 variable "blob_name" {
     type = string
+    default = "terraform.zip"
 }
